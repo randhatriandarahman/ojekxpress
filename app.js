@@ -1,5 +1,5 @@
-const API='https://script.google.com/macros/s/AKfycbwzzi03ZpVLU4zKg1g_R_L83NnyHFGiCcGSQ2YeWRXP70AZeO0D4XU1uNmBbnmLgHWU/exec';
-const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const API='https://script.google.com/macros/s/AKfycby1bF3MPsietWUGy9WZFv18R3xY8tPAl4tiuSOul9gDZHETJVBfwP-5Vab0kVow2nZz/exec';
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
 const S={get:()=>JSON.parse(localStorage.getItem('s')||'null'),set:v=>localStorage.setItem('s',JSON.stringify(v)),out(){localStorage.removeItem('s');location.href='index.html'}};
 async function api(a,d={}){const s=S.get(),r=await fetch(API,{method:'POST',body:JSON.stringify({a,token:s&&s.token,...d})}),j=await r.json();if(!j.ok){if(/Sesi/.test(j.msg))S.out();throw Error(j.msg)}return j}
 const guard=r=>{const s=S.get();if(!s||s.role!=r)location.href='index.html';return s};
